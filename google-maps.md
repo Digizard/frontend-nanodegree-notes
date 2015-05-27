@@ -48,6 +48,16 @@ Taken from Project 2.
 
 ```JavaScript
 /*
+callback(results, status) makes sure the search returned results for a location.
+If so, it creates a new map marker for that location.
+*/
+function callback(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    createMapMarker(results[0]);
+  }
+}
+
+/*
 pinPoster(locations) takes in the array of locations created by locationFinder()
 and fires off Google place searches for each location
 */
@@ -71,3 +81,26 @@ function pinPoster(locations) {
   }
 }
 ```
+
+
+Info Windows
+------------
+
+```JavaScript
+var contentString = 'Content!';
+
+var infowindow = new google.maps.InfoWindow({
+    content: contentString
+});
+
+var marker = new google.maps.Marker({
+    position: myLatlng,
+    map: map,
+    title: 'Uluru (Ayers Rock)'
+});
+google.maps.event.addListener(marker, 'click', function() {
+  infowindow.open(map,marker);
+});
+```
+
+Base on [here](https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple).
