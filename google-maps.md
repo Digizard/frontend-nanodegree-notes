@@ -11,7 +11,7 @@ A basic example map to get started with, [here](https://developers.google.com/ma
 
 
 Markers
---------------
+-------
 
 ### Adding Markers
 
@@ -27,9 +27,36 @@ var marker = new google.maps.Marker({
 
 ### Hiding Markers
 
-Simply change their map property to null. Change it back to the map when you want them back.
+Simply set their map property to null. Change it back to the map when you want them back.
+
+```JavaScript
+marker.setMap(null);
+```
 
 Source [here](https://developers.google.com/maps/documentation/javascript/examples/marker-remove).
+
+
+Info Windows
+------------
+
+```JavaScript
+var contentString = 'Content!';
+
+var infowindow = new google.maps.InfoWindow({
+    content: contentString
+});
+
+var marker = new google.maps.Marker({
+    position: myLatlng,
+    map: map,
+    title: 'Uluru (Ayers Rock)'
+});
+google.maps.event.addListener(marker, 'click', function() {
+  infowindow.open(map,marker);
+});
+```
+
+Base on [here](https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple).
 
 
 Places API
@@ -81,26 +108,3 @@ function pinPoster(locations) {
   }
 }
 ```
-
-
-Info Windows
-------------
-
-```JavaScript
-var contentString = 'Content!';
-
-var infowindow = new google.maps.InfoWindow({
-    content: contentString
-});
-
-var marker = new google.maps.Marker({
-    position: myLatlng,
-    map: map,
-    title: 'Uluru (Ayers Rock)'
-});
-google.maps.event.addListener(marker, 'click', function() {
-  infowindow.open(map,marker);
-});
-```
-
-Base on [here](https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple).
